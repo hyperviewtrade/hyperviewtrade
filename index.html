@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperview — Advanced Charts for Hyperliquid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080a0c;
+    --bg2: #0d1117;
+    --bg3: #131920;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --green: #00d68f;
+    --green2: #00b87a;
+    --green-dim: rgba(0,214,143,0.12);
+    --green-dim2: rgba(0,214,143,0.06);
+    --text: #e8edf2;
+    --text2: #8a9ab0;
+    --text3: #4a5a6a;
+    --red: #ff4d6a;
+    --blue: #3b82f6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,214,143,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,214,143,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    background: rgba(8,10,12,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  nav .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-mark svg { width: 16px; height: 16px; fill: #080a0c; }
+
+  .nav-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(0,214,143,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 160px 0 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 82px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+
+  .hero h1 .accent { color: var(--green); }
+
+  .hero-desc {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: #080a0c;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green2); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text2);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+  .hero-markets {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding: 12px 20px;
+    background: var(--green-dim2);
+    border: 1px solid rgba(0,214,143,0.15);
+    border-radius: 10px;
+  }
+
+  .markets-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.03em;
+  }
+
+  .markets-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  .markets-sep {
+    color: var(--text3);
+    font-size: 14px;
+    line-height: 1;
+    align-self: center;
+  }
+
+  .markets-hip {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(0,214,143,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    align-self: center;
+  }
+
+  /* CHART PREVIEW */
+  .chart-preview {
+    margin-top: 80px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    background: var(--bg2);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .chart-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+
+  .chart-pair {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pair-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--green-dim);
+    border-radius: 50%;
+    border: 1px solid rgba(0,214,143,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .pair-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .pair-interval {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    margin-left: 4px;
+  }
+
+  .chart-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .price-chg {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+  }
+
+  .chart-area {
+    padding: 20px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-svg { width: 100%; height: 100%; }
+
+  /* FEATURE BLOCKS */
+  .feature-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 120px;
+  }
+
+  .feature-block.reverse { direction: rtl; }
+  .feature-block.reverse > * { direction: ltr; }
+
+  .feature-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+
+  .feature-block-text h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .feature-block-text p {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .feature-block-text .highlight {
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-list li {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .feature-list li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  /* MOCK CARDS */
+  .feature-block-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mock-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .mock-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .mock-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .mock-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .mock-badge.long { background: rgba(0,214,143,0.12); color: var(--green); border: 1px solid rgba(0,214,143,0.2); }
+  .mock-badge.neutral { background: rgba(255,255,255,0.06); color: var(--text2); border: 1px solid var(--border2); }
+  .mock-badge.purple { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+  .mock-badge.green-badge { background: rgba(0,214,143,0.12); color: var(--green); border: 1px solid rgba(0,214,143,0.2); }
+
+  .mock-pnl {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .mock-pnl-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 20px;
+  }
+
+  .mock-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+
+  .mock-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .mock-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .mock-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .mock-larp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .larp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .green-dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+  .larp-score {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .mock-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .mock-stat {
+    background: var(--bg3);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mock-stat-val {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .mock-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.03em;
+  }
+
+  /* LEADERBOARD */
+  .mock-leaderboard { display: flex; flex-direction: column; gap: 12px; }
+
+  .lb-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--bg3);
+    border-radius: 10px;
+  }
+
+  .lb-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  .lb-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lb-addr {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .lb-pos {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+  }
+
+  .lb-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .lb-pnl {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .copy-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(0,214,143,0.2);
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+
+  /* STAKING ACTIONS */
+  .mock-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mock-action-btn {
+    flex: 1;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .mock-action-btn.primary {
+    background: var(--green);
+    color: #080a0c;
+    border: none;
+  }
+
+  .mock-action-btn.secondary {
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+  }
+
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+
+  @media (max-width: 768px) {
+    .feature-block { grid-template-columns: 1fr; gap: 40px; }
+    .feature-block.reverse { direction: ltr; }
+  }
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--bg2);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+
+  .feature-card:hover { background: var(--bg3); }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--green-dim2);
+    border: 1px solid rgba(0,214,143,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text2);
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 80px;
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+
+  /* TECH STACK */
+  .tech-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .tech-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes drawLine {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .chart-line {
+    stroke-dasharray: 1000;
+    animation: drawLine 2s ease forwards;
+    animation-delay: 0.5s;
+  }
+
+  @media (max-width: 640px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .hero { padding: 120px 0 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Hyperview
+    </a>
+    <span class="nav-badge">iOS App · Beta</span>
+  </div>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="container">
+      <div class="fade-up">
+        <p class="hero-eyebrow">Hyperliquid Trading · Advanced Charts</p>
+      </div>
+      <div class="fade-up">
+        <h1>Pro charts for<br><span class="accent">Hyperliquid</span><br>on iOS.</h1>
+      </div>
+      <div class="fade-up">
+        <p class="hero-desc">Hyperview is the most complete trading terminal for Hyperliquid on iOS — institutional-grade charts, full market data, and one-tap execution, all in a single app. Analyze and trade without ever switching screens.</p>
+        <div class="hero-markets">
+          <span class="markets-num">589</span>
+          <span class="markets-text">tradable markets</span>
+          <span class="markets-sep">·</span>
+          <span class="markets-hip">+141 HIP-3 markets</span>
+        </div>
+        <div class="hero-actions">
+          <a href="https://github.com/Hyperviewapp" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+          <a href="mailto:Hyperview@proton.me" class="btn-secondary">Contact →</a>
+        </div>
+      </div>
+
+      <!-- CHART MOCK -->
+      <div class="chart-preview fade-up" style="animation-delay: 0.4s;">
+        <div class="chart-topbar">
+          <div class="chart-pair">
+            <div class="pair-icon">BTC</div>
+            <span class="pair-name">BTC-PERP</span>
+            <span class="pair-interval">1H</span>
+          </div>
+          <div class="chart-price">
+            <span class="price-val">83,241.50</span>
+            <span class="price-chg">+2.34%</span>
+          </div>
+        </div>
+        <div class="chart-area">
+          <svg class="chart-svg" viewBox="0 0 900 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00d68f" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#00d68f" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- Area fill -->
+            <path d="M0,160 L50,140 L100,145 L150,120 L200,130 L250,100 L300,110 L350,85 L400,95 L450,70 L500,80 L550,60 L600,50 L650,65 L700,45 L750,55 L800,35 L850,40 L900,20 L900,200 L0,200 Z" fill="url(#areaGrad)"/>
+            <!-- Main line -->
+            <path class="chart-line" d="M0,160 L50,140 L100,145 L150,120 L200,130 L250,100 L300,110 L350,85 L400,95 L450,70 L500,80 L550,60 L600,50 L650,65 L700,45 L750,55 L800,35 L850,40 L900,20" stroke="#00d68f" stroke-width="2" fill="none"/>
+            <!-- Grid lines -->
+            <line x1="0" y1="50" x2="900" y2="50" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="100" x2="900" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="150" x2="900" y2="150" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Everything in one terminal</p>
+
+      <!-- FEATURE 1: Position Tracking + LARP Detector -->
+      <div class="feature-block">
+        <div class="feature-block-text">
+          <div class="feature-tag">Position Tracking</div>
+          <h2>Track any position.<br>Detect the larps.</h2>
+          <p>Monitor any open position on Hyperliquid in real time — entry price, PnL, liquidation distance, funding accrued. The built-in <span class="highlight">LARP Detector</span> flags traders posting screenshots of positions they actually hold, by cross-referencing on-chain data.</p>
+          <ul class="feature-list">
+            <li>Live unrealized & realized PnL</li>
+            <li>Liquidation price & margin health</li>
+            <li>LARP score based on on-chain verification</li>
+            <li>Funding rate exposure tracker</li>
+          </ul>
+        </div>
+        <div class="feature-block-visual">
+          <div class="mock-card">
+            <div class="mock-header">
+              <span class="mock-title">BTC-PERP</span>
+              <span class="mock-badge long">LONG</span>
+            </div>
+            <div class="mock-pnl green">+$4,821.50</div>
+            <div class="mock-pnl-sub">+12.4% · Entry $71,200</div>
+            <div class="mock-divider"></div>
+            <div class="mock-row">
+              <span class="mock-label">Size</span>
+              <span class="mock-val">2.1 BTC</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-label">Liq. Price</span>
+              <span class="mock-val red">$62,410</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-label">Funding</span>
+              <span class="mock-val">−$14.20 / 8h</span>
+            </div>
+            <div class="mock-divider"></div>
+            <div class="mock-larp">
+              <div class="larp-dot green-dot"></div>
+              <span class="mock-label">LARP Detector</span>
+              <span class="larp-score green">Verified on-chain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE 2: Wallet Tracking -->
+      <div class="feature-block reverse">
+        <div class="feature-block-text">
+          <div class="feature-tag">Wallet Intelligence</div>
+          <h2>Full wallet X-ray.<br>Any address.</h2>
+          <p>Paste any Hyperliquid address and get the complete picture — open positions, historical trades, token holdings, PnL breakdown, and portfolio composition. No app switching, no block explorer.</p>
+          <ul class="feature-list">
+            <li>All open & past positions</li>
+            <li>Full transaction history</li>
+            <li>Token holdings & portfolio value</li>
+            <li>Win rate, avg leverage, best/worst trades</li>
+          </ul>
+        </div>
+        <div class="feature-block-visual">
+          <div class="mock-card">
+            <div class="mock-header">
+              <span class="mock-title">0x4f2a…8c1d</span>
+              <span class="mock-badge neutral">Wallet</span>
+            </div>
+            <div class="mock-stats-grid">
+              <div class="mock-stat">
+                <span class="mock-stat-val green">+$142k</span>
+                <span class="mock-stat-label">Total PnL</span>
+              </div>
+              <div class="mock-stat">
+                <span class="mock-stat-val">68%</span>
+                <span class="mock-stat-label">Win Rate</span>
+              </div>
+              <div class="mock-stat">
+                <span class="mock-stat-val">12.4x</span>
+                <span class="mock-stat-label">Avg Leverage</span>
+              </div>
+              <div class="mock-stat">
+                <span class="mock-stat-val">847</span>
+                <span class="mock-stat-label">Trades</span>
+              </div>
+            </div>
+            <div class="mock-divider"></div>
+            <div class="mock-row">
+              <span class="mock-label">Holdings</span>
+              <span class="mock-val">HYPE · ETH · USDC</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-label">Open Positions</span>
+              <span class="mock-val">3 active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE 3: Whale & Leaderboard -->
+      <div class="feature-block">
+        <div class="feature-block-text">
+          <div class="feature-tag">Whale Tracking · Copy Trade</div>
+          <h2>Follow the best.<br>Copy their trades.</h2>
+          <p>Browse Hyperliquid's leaderboard of top performers, track their positions in real time, and enable copy trading with custom size multipliers — directly from the app. Never miss a big move from the whales again.</p>
+          <ul class="feature-list">
+            <li>Full Hyperliquid leaderboard</li>
+            <li>Live whale position alerts</li>
+            <li>One-tap copy trade with size control</li>
+            <li>Custom watchlist of tracked wallets</li>
+          </ul>
+        </div>
+        <div class="feature-block-visual">
+          <div class="mock-card">
+            <div class="mock-header">
+              <span class="mock-title">Leaderboard</span>
+              <span class="mock-badge purple">Top Traders</span>
+            </div>
+            <div class="mock-leaderboard">
+              <div class="lb-row">
+                <span class="lb-rank">#1</span>
+                <div class="lb-info">
+                  <span class="lb-addr">0xWhale…a1</span>
+                  <span class="lb-pos">LONG ETH 50x</span>
+                </div>
+                <div class="lb-right">
+                  <span class="lb-pnl green">+$2.1M</span>
+                  <button class="copy-btn">Copy</button>
+                </div>
+              </div>
+              <div class="lb-row">
+                <span class="lb-rank">#2</span>
+                <div class="lb-info">
+                  <span class="lb-addr">0xAlpha…f9</span>
+                  <span class="lb-pos">SHORT SOL 20x</span>
+                </div>
+                <div class="lb-right">
+                  <span class="lb-pnl green">+$890k</span>
+                  <button class="copy-btn">Copy</button>
+                </div>
+              </div>
+              <div class="lb-row">
+                <span class="lb-rank">#3</span>
+                <div class="lb-info">
+                  <span class="lb-addr">0xDefi…3b</span>
+                  <span class="lb-pos">LONG BTC 10x</span>
+                </div>
+                <div class="lb-right">
+                  <span class="lb-pnl green">+$541k</span>
+                  <button class="copy-btn">Copy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE 4: Staking -->
+      <div class="feature-block reverse">
+        <div class="feature-block-text">
+          <div class="feature-tag">Native Staking</div>
+          <h2>Stake HYPE.<br>Right from the app.</h2>
+          <p>Stake your HYPE tokens natively within Hyperview — no external app, no browser. Monitor your staking rewards, APR, and validator performance in the same terminal you use to trade.</p>
+          <ul class="feature-list">
+            <li>Native HYPE staking & unstaking</li>
+            <li>Live APR & reward accrual</li>
+            <li>Validator selection & comparison</li>
+            <li>Staking history & compounding stats</li>
+          </ul>
+        </div>
+        <div class="feature-block-visual">
+          <div class="mock-card">
+            <div class="mock-header">
+              <span class="mock-title">HYPE Staking</span>
+              <span class="mock-badge green-badge">Active</span>
+            </div>
+            <div class="mock-pnl green">1,240.00 HYPE</div>
+            <div class="mock-pnl-sub">Staked · ≈ $21,080</div>
+            <div class="mock-divider"></div>
+            <div class="mock-row">
+              <span class="mock-label">APR</span>
+              <span class="mock-val green">8.4%</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-label">Rewards earned</span>
+              <span class="mock-val green">+42.1 HYPE</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-label">Validator</span>
+              <span class="mock-val">Figment · 99.9% uptime</span>
+            </div>
+            <div class="mock-divider"></div>
+            <div class="mock-actions">
+              <button class="mock-action-btn primary">Stake more</button>
+              <button class="mock-action-btn secondary">Unstake</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-row">
+        <span class="tech-pill">Swift / SwiftUI</span>
+        <span class="tech-pill">TradingView Charting Library</span>
+        <span class="tech-pill">Hyperliquid API</span>
+        <span class="tech-pill">WebSocket Datafeed</span>
+        <span class="tech-pill">Node.js Backend</span>
+        <span class="tech-pill">iOS 16+</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Hyperview · Built by Alexandre Camugliani</p>
+      <div class="footer-links">
+        <a href="https://github.com/Hyperviewapp">GitHub</a>
+        <a href="mailto:Hyperview@proton.me">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
