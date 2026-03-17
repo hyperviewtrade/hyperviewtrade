@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features — Hyperview</title>
+<meta name="description" content="Explore Hyperview's features: advanced TradingView charts, wallet intelligence, whale tracking, liquidation heatmaps, and native HYPE staking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Page-specific styles for features.html */
+  .features-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .fd-card {
+    background: var(--bg2);
+    padding: 40px 36px;
+    transition: background 0.25s;
+  }
+
+  .fd-card:hover { background: var(--bg3); }
+
+  .fd-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-dim2);
+    border: 1px solid rgba(0,214,143,0.15);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .fd-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--green);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .fd-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .fd-card .fd-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .fd-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fd-bullets li {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .fd-bullets li::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  .tech-section {
+    padding: 100px 0 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section {
+    padding: 100px 0 120px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .cta-section h2 .accent { color: var(--green); }
+
+  .cta-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--text2);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .fade-up-d1 { animation-delay: 0.1s; }
+  .fade-up-d2 { animation-delay: 0.2s; }
+  .fade-up-d3 { animation-delay: 0.3s; }
+  .fade-up-d4 { animation-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    .features-detail-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .fd-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Hyperview
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/features.html">Features</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <p class="hero-eyebrow fade-up fade-up-d1">Platform Features</p>
+      <h1 class="fade-up fade-up-d2">Everything you need.<br><span class="accent">Nothing you don't.</span></h1>
+      <p class="fade-up fade-up-d3" style="font-family:'DM Mono',monospace;font-size:15px;color:#8a9ab0;max-width:600px;line-height:1.7;">Hyperview combines institutional-grade charting, real-time on-chain intelligence, and seamless execution into one iOS app purpose-built for Hyperliquid traders.</p>
+    </div>
+  </div>
+
+  <section style="padding-bottom:100px;">
+    <div class="container">
+      <div class="features-detail-grid fade-up fade-up-d4">
+
+        <!-- 1. TradingView Advanced Charts -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>TradingView Advanced Charts</h3>
+          <p class="fd-desc">Professional-grade charting powered by TradingView's official library. Access the same tools used by institutional desks, rendered natively on iOS with real-time WebSocket price feeds and zero lag.</p>
+          <ul class="fd-bullets">
+            <li>100+ technical indicators including EMA, MACD, RSI, Bollinger Bands</li>
+            <li>Full drawing toolkit: trendlines, Fibonacci, pitchfork, and more</li>
+            <li>Multiple timeframes from 1m to 1M with instant switching</li>
+            <li>All chart types: candlestick, line, area, Heikin-Ashi, Renko</li>
+          </ul>
+        </div>
+
+        <!-- 2. 589+ Tradable Markets -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>589+ Tradable Markets</h3>
+          <p class="fd-desc">Access every perpetual market listed on Hyperliquid, including the full roster of HIP-3 community-deployed markets. Search, filter by volume or category, and trade any pair instantly from a unified interface.</p>
+          <ul class="fd-bullets">
+            <li>Every Hyperliquid perpetual contract available on launch day</li>
+            <li>141+ HIP-3 community markets with full chart support</li>
+            <li>Real-time search and multi-filter market explorer</li>
+            <li>One-tap market switching without leaving your chart</li>
+          </ul>
+        </div>
+
+        <!-- 3. Wallet Intelligence -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Wallet Intelligence</h3>
+          <p class="fd-desc">X-ray any Hyperliquid address with a single paste. Instantly surface every open position, full trade history, PnL breakdown, win rate, average leverage, spot token holdings, and overall portfolio composition.</p>
+          <ul class="fd-bullets">
+            <li>Complete open positions and historical trade log</li>
+            <li>Cumulative PnL curve with daily breakdown</li>
+            <li>Win rate, average leverage, best and worst trades</li>
+            <li>Token holdings and portfolio allocation chart</li>
+          </ul>
+        </div>
+
+        <!-- 4. Position Tracking & LARP Detector -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Position Tracking & LARP Detector</h3>
+          <p class="fd-desc">Monitor any open position in real-time with full context: entry price, unrealized PnL, liquidation distance, and funding accrued. The built-in LARP Detector cross-references on-chain data to verify whether a trader actually holds the position they claim.</p>
+          <ul class="fd-bullets">
+            <li>Live unrealized PnL and liquidation price tracking</li>
+            <li>Margin health, leverage, and funding rate exposure</li>
+            <li>LARP score: on-chain verification of claimed positions</li>
+            <li>Sharable position cards with verified badge</li>
+          </ul>
+        </div>
+
+        <!-- 5. Whale Tracking & Copy Trading -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Whale Tracking & Copy Trading</h3>
+          <p class="fd-desc">Browse the full Hyperliquid leaderboard ranked by PnL, track top performers' positions in real-time, and enable copy trading with custom size multipliers. Follow the smart money with one tap.</p>
+          <ul class="fd-bullets">
+            <li>Complete Hyperliquid leaderboard with filtering</li>
+            <li>Live position feed for any tracked wallet</li>
+            <li>One-tap copy trade with configurable size multiplier</li>
+            <li>Custom watchlist and push notifications for whale moves</li>
+          </ul>
+        </div>
+
+        <!-- 6. Liquidation Heatmap -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>Liquidation Heatmap</h3>
+          <p class="fd-desc">A Coinglass-style 2D liquidation heatmap rendered directly on your chart. See exactly where leveraged positions are concentrated across price levels and identify liquidation clusters that act as price magnets.</p>
+          <ul class="fd-bullets">
+            <li>2D heatmap overlay with real-time liquidation data</li>
+            <li>Color-coded intensity showing position concentration</li>
+            <li>Identify key liquidation levels and potential cascades</li>
+            <li>Toggle between long and short liquidation views</li>
+          </ul>
+        </div>
+
+        <!-- 7. Smart Money Flow -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Smart Money Flow</h3>
+          <p class="fd-desc">Track large orders, TWAP executions, and unusual trading activity across Hyperliquid. Detect institutional-sized moves before they become obvious to retail traders and position yourself ahead of the curve.</p>
+          <ul class="fd-bullets">
+            <li>Real-time large order detection with size thresholds</li>
+            <li>TWAP and iceberg order pattern recognition</li>
+            <li>Unusual volume spike alerts across all markets</li>
+            <li>Historical smart money flow timeline</li>
+          </ul>
+        </div>
+
+        <!-- 8. Native HYPE Staking -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Native HYPE Staking</h3>
+          <p class="fd-desc">Stake and unstake HYPE tokens directly within the app. Monitor your APR, accrued rewards, and validator performance without ever leaving the trading terminal. Everything in one place.</p>
+          <ul class="fd-bullets">
+            <li>One-tap staking and unstaking with no external tools</li>
+            <li>Live APR display and reward accrual tracking</li>
+            <li>Validator comparison: uptime, commission, total stake</li>
+            <li>Staking history and compounding analytics</li>
+          </ul>
+        </div>
+
+        <!-- 9. Real-Time Market Data -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Real-Time Market Data</h3>
+          <p class="fd-desc">Live orderbook depth, recent trade tape, funding rates, open interest, and 24h volume for every market on Hyperliquid. All data is pushed via WebSocket with zero polling delay.</p>
+          <ul class="fd-bullets">
+            <li>Live orderbook with depth visualization</li>
+            <li>Real-time trade tape with size and direction</li>
+            <li>Funding rate history and next predicted rate</li>
+            <li>Open interest and volume charts per market</li>
+          </ul>
+        </div>
+
+        <!-- 10. iOS Native Experience -->
+        <div class="fd-card">
+          <div class="fd-icon">
+            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>iOS Native Experience</h3>
+          <p class="fd-desc">Built from the ground up with Swift and SwiftUI for maximum performance on iOS. Every interaction is fluid at 60fps with haptic feedback, full Dark Mode support, and layouts optimized for every iPhone size.</p>
+          <ul class="fd-bullets">
+            <li>Native Swift and SwiftUI for buttery 60fps performance</li>
+            <li>Haptic feedback on trades, alerts, and key interactions</li>
+            <li>System Dark Mode with OLED-optimized true black</li>
+            <li>Responsive layout from iPhone SE to iPhone 16 Pro Max</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="tech-section">
+        <p class="section-label">Tech Stack</p>
+        <div class="tech-row">
+          <span class="tech-pill">Swift / SwiftUI</span>
+          <span class="tech-pill">TradingView Charting Library</span>
+          <span class="tech-pill">Hyperliquid API</span>
+          <span class="tech-pill">WebSocket Datafeed</span>
+          <span class="tech-pill">Node.js Backend</span>
+          <span class="tech-pill">iOS 16+</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h2>Ready to <span class="accent">trade smarter</span>?</h2>
+        <p class="cta-desc">Hyperview is the only iOS app you need for Hyperliquid. Professional charts, on-chain intelligence, and seamless execution in one place.</p>
+        <div class="cta-actions">
+          <a href="https://github.com/Hyperviewapp" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+          <a href="mailto:Hyperview@proton.me" class="btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="logo"><div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hyperview</a>
+        <p class="footer-desc">The most advanced trading terminal for Hyperliquid on iOS. Professional-grade charts, real-time market data, and intelligent trading tools.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col-title">Product</h4>
+        <a href="/features.html">Features</a>
+        <a href="/about.html">About</a>
+        <a href="https://github.com/Hyperviewapp">GitHub</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/cookies.html">Cookie Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact</h4>
+        <a href="mailto:Hyperview@proton.me">Hyperview@proton.me</a>
+        <a href="https://github.com/Hyperviewapp">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Hyperview. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
