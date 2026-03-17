@@ -4,575 +4,575 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Hyperview</title>
-<meta name="description" content="About Hyperview — the team and mission behind the most advanced Hyperliquid trading terminal on iOS.">
+<meta name="description" content="About Hyperview — the mission behind the most advanced Hyperliquid trading terminal on iOS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  /* Page-specific styles */
-  .page-header {
-    padding: 160px 0 80px;
-    position: relative;
-    z-index: 1;
-  }
+ /* Page-specific styles */
+ .page-header {
+ padding: 160px 0 80px;
+ position: relative;
+ z-index: 1;
+ }
 
-  .page-header h1 {
-    font-size: clamp(42px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    margin-bottom: 24px;
-  }
+ .page-header h1 {
+ font-size: clamp(42px, 7vw, 72px);
+ font-weight: 800;
+ line-height: 1.05;
+ letter-spacing: -0.04em;
+ margin-bottom: 24px;
+ }
 
-  .page-header .subtitle {
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: var(--text2);
-    max-width: 600px;
-    line-height: 1.8;
-    font-weight: 300;
-  }
+ .page-header .subtitle {
+ font-family: 'DM Mono', monospace;
+ font-size: 16px;
+ color: var(--text2);
+ max-width: 600px;
+ line-height: 1.8;
+ font-weight: 300;
+ }
 
-  .content-section {
-    padding: 80px 0;
-    position: relative;
-    z-index: 1;
-  }
+ .content-section {
+ padding: 80px 0;
+ position: relative;
+ z-index: 1;
+ }
 
-  .content-section h2 {
-    font-size: clamp(28px, 3.5vw, 40px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 32px;
-  }
+ .content-section h2 {
+ font-size: clamp(28px, 3.5vw, 40px);
+ font-weight: 800;
+ letter-spacing: -0.03em;
+ line-height: 1.1;
+ margin-bottom: 32px;
+ }
 
-  .content-section p {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.9;
-    font-weight: 300;
-    max-width: 720px;
-    margin-bottom: 20px;
-  }
+ .content-section p {
+ font-family: 'DM Mono', monospace;
+ font-size: 14px;
+ color: var(--text2);
+ line-height: 1.9;
+ font-weight: 300;
+ max-width: 720px;
+ margin-bottom: 20px;
+ }
 
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 48px;
-  }
+ .values-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 1px;
+ background: var(--border);
+ border: 1px solid var(--border);
+ border-radius: 16px;
+ overflow: hidden;
+ margin-top: 48px;
+ }
 
-  .value-card {
-    background: var(--bg2);
-    padding: 40px 32px;
-    transition: background 0.2s;
-  }
+ .value-card {
+ background: var(--bg2);
+ padding: 40px 32px;
+ transition: background 0.2s;
+ }
 
-  .value-card:hover {
-    background: var(--bg3);
-  }
+ .value-card:hover {
+ background: var(--bg3);
+ }
 
-  .value-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
+ .value-card h3 {
+ font-size: 18px;
+ font-weight: 700;
+ margin-bottom: 16px;
+ letter-spacing: -0.01em;
+ color: var(--text);
+ }
 
-  .value-card p {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 0;
-    max-width: none;
-  }
+ .value-card p {
+ font-family: 'DM Mono', monospace;
+ font-size: 13px;
+ color: var(--text2);
+ line-height: 1.8;
+ font-weight: 300;
+ margin-bottom: 0;
+ max-width: none;
+ }
 
-  .value-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--green-dim2);
-    border: 1px solid rgba(0,214,143,0.15);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+ .value-icon {
+ width: 40px;
+ height: 40px;
+ background: var(--green-dim2);
+ border: 1px solid rgba(0,214,143,0.15);
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 20px;
+ }
 
-  .value-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--green);
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+ .value-icon svg {
+ width: 18px;
+ height: 18px;
+ stroke: var(--green);
+ fill: none;
+ stroke-width: 1.5;
+ stroke-linecap: round;
+ stroke-linejoin: round;
+ }
 
-  .team-card {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 48px;
-    max-width: 640px;
-    margin-top: 40px;
-  }
+ .team-card {
+ background: var(--bg2);
+ border: 1px solid var(--border2);
+ border-radius: 16px;
+ padding: 48px;
+ max-width: 640px;
+ margin-top: 40px;
+ }
 
-  .team-name {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
+ .team-name {
+ font-size: 24px;
+ font-weight: 800;
+ letter-spacing: -0.02em;
+ margin-bottom: 8px;
+ }
 
-  .team-role {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--green);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
+ .team-role {
+ font-family: 'DM Mono', monospace;
+ font-size: 12px;
+ color: var(--green);
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ margin-bottom: 24px;
+ }
 
-  .team-bio {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.9;
-    font-weight: 300;
-    margin-bottom: 24px;
-    font-style: italic;
-  }
+ .team-bio {
+ font-family: 'DM Mono', monospace;
+ font-size: 14px;
+ color: var(--text2);
+ line-height: 1.9;
+ font-weight: 300;
+ margin-bottom: 24px;
+ font-style: italic;
+ }
 
-  .team-meta {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
+ .team-meta {
+ display: flex;
+ gap: 32px;
+ flex-wrap: wrap;
+ }
 
-  .team-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+ .team-meta-item {
+ display: flex;
+ flex-direction: column;
+ gap: 4px;
+ }
 
-  .team-meta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+ .team-meta-label {
+ font-family: 'DM Mono', monospace;
+ font-size: 10px;
+ color: var(--text3);
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ }
 
-  .team-meta-val {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    font-weight: 500;
-  }
+ .team-meta-val {
+ font-family: 'DM Mono', monospace;
+ font-size: 13px;
+ color: var(--text);
+ font-weight: 500;
+ }
 
-  .team-meta-val a {
-    color: var(--green);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+ .team-meta-val a {
+ color: var(--green);
+ text-decoration: none;
+ transition: color 0.2s;
+ }
 
-  .team-meta-val a:hover {
-    color: var(--green2);
-  }
+ .team-meta-val a:hover {
+ color: var(--green2);
+ }
 
-  .tech-section {
-    padding: 80px 0 100px;
-    position: relative;
-    z-index: 1;
-  }
+ .tech-section {
+ padding: 80px 0 100px;
+ position: relative;
+ z-index: 1;
+ }
 
-  .tech-section h2 {
-    font-size: clamp(28px, 3.5vw, 40px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
+ .tech-section h2 {
+ font-size: clamp(28px, 3.5vw, 40px);
+ font-weight: 800;
+ letter-spacing: -0.03em;
+ line-height: 1.1;
+ margin-bottom: 20px;
+ }
 
-  .tech-section p {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.9;
-    font-weight: 300;
-    max-width: 640px;
-    margin-bottom: 32px;
-  }
+ .tech-section p {
+ font-family: 'DM Mono', monospace;
+ font-size: 14px;
+ color: var(--text2);
+ line-height: 1.9;
+ font-weight: 300;
+ max-width: 640px;
+ margin-bottom: 32px;
+ }
 
-  /* Footer full */
-  .footer-full {
-    border-top: 1px solid var(--border);
-    padding: 64px 0 40px;
-    position: relative;
-    z-index: 1;
-  }
+ /* Footer full */
+ .footer-full {
+ border-top: 1px solid var(--border);
+ padding: 64px 0 40px;
+ position: relative;
+ z-index: 1;
+ }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 48px;
-  }
+ .footer-grid {
+ display: grid;
+ grid-template-columns: 2fr 1fr 1fr 1fr;
+ gap: 48px;
+ margin-bottom: 48px;
+ }
 
-  .footer-brand p {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text3);
-    line-height: 1.7;
-    margin-top: 16px;
-    max-width: 280px;
-  }
+ .footer-brand p {
+ font-family: 'DM Mono', monospace;
+ font-size: 13px;
+ color: var(--text3);
+ line-height: 1.7;
+ margin-top: 16px;
+ max-width: 280px;
+ }
 
-  .footer-col h4 {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text);
-    margin-bottom: 20px;
-  }
+ .footer-col h4 {
+ font-size: 13px;
+ font-weight: 700;
+ letter-spacing: 0.05em;
+ text-transform: uppercase;
+ color: var(--text);
+ margin-bottom: 20px;
+ }
 
-  .footer-col a {
-    display: block;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text3);
-    text-decoration: none;
-    margin-bottom: 12px;
-    transition: color 0.2s;
-  }
+ .footer-col a {
+ display: block;
+ font-family: 'DM Mono', monospace;
+ font-size: 13px;
+ color: var(--text3);
+ text-decoration: none;
+ margin-bottom: 12px;
+ transition: color 0.2s;
+ }
 
-  .footer-col a:hover {
-    color: var(--green);
-  }
+ .footer-col a:hover {
+ color: var(--green);
+ }
 
-  .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
+ .footer-bottom {
+ border-top: 1px solid var(--border);
+ padding-top: 24px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ flex-wrap: wrap;
+ gap: 16px;
+ }
 
-  .footer-bottom p {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--text3);
-  }
+ .footer-bottom p {
+ font-family: 'DM Mono', monospace;
+ font-size: 12px;
+ color: var(--text3);
+ }
 
-  .footer-legal {
-    display: flex;
-    gap: 24px;
-  }
+ .footer-legal {
+ display: flex;
+ gap: 24px;
+ }
 
-  .footer-legal a {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--text3);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+ .footer-legal a {
+ font-family: 'DM Mono', monospace;
+ font-size: 12px;
+ color: var(--text3);
+ text-decoration: none;
+ transition: color 0.2s;
+ }
 
-  .footer-legal a:hover {
-    color: var(--green);
-  }
+ .footer-legal a:hover {
+ color: var(--green);
+ }
 
-  /* Nav links for multi-page */
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
+ /* Nav links for multi-page */
+ .nav-links {
+ display: flex;
+ align-items: center;
+ gap: 32px;
+ }
 
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text2);
-    text-decoration: none;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
+ .nav-links a {
+ font-family: 'DM Mono', monospace;
+ font-size: 13px;
+ color: var(--text2);
+ text-decoration: none;
+ transition: color 0.2s;
+ letter-spacing: 0.02em;
+ }
 
-  .nav-links a:hover {
-    color: var(--green);
-  }
+ .nav-links a:hover {
+ color: var(--green);
+ }
 
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
+ .menu-toggle {
+ display: none;
+ flex-direction: column;
+ gap: 5px;
+ background: none;
+ border: none;
+ cursor: pointer;
+ padding: 4px;
+ }
 
-  .menu-toggle span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--text);
-    border-radius: 1px;
-    transition: transform 0.2s, opacity 0.2s;
-  }
+ .menu-toggle span {
+ display: block;
+ width: 20px;
+ height: 2px;
+ background: var(--text);
+ border-radius: 1px;
+ transition: transform 0.2s, opacity 0.2s;
+ }
 
-  @media (max-width: 768px) {
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
+ @media (max-width: 768px) {
+ .values-grid {
+ grid-template-columns: 1fr;
+ }
 
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
+ .footer-grid {
+ grid-template-columns: 1fr 1fr;
+ gap: 32px;
+ }
 
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background: rgba(8,10,12,0.95);
-      backdrop-filter: blur(12px);
-      padding: 24px;
-      gap: 16px;
-      border-bottom: 1px solid var(--border);
-    }
+ .nav-links {
+ display: none;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ right: 0;
+ flex-direction: column;
+ background: rgba(8,10,12,0.95);
+ backdrop-filter: blur(12px);
+ padding: 24px;
+ gap: 16px;
+ border-bottom: 1px solid var(--border);
+ }
 
-    nav.nav-open .nav-links {
-      display: flex;
-    }
+ nav.nav-open .nav-links {
+ display: flex;
+ }
 
-    .menu-toggle {
-      display: flex;
-    }
+ .menu-toggle {
+ display: flex;
+ }
 
-    .team-card {
-      padding: 32px 24px;
-    }
-  }
+ .team-card {
+ padding: 32px 24px;
+ }
+ }
 
-  @media (max-width: 480px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
+ @media (max-width: 480px) {
+ .footer-grid {
+ grid-template-columns: 1fr;
+ gap: 32px;
+ }
 
-    .team-meta {
-      flex-direction: column;
-      gap: 16px;
-    }
-  }
+ .team-meta {
+ flex-direction: column;
+ gap: 16px;
+ }
+ }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="inner">
-    <a href="/" class="logo">
-      <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      Hyperview
-    </a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/features.html">Features</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </div>
-    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')"><span></span><span></span><span></span></button>
-  </div>
+ <div class="inner">
+ <a href="/" class="logo">
+ <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ Hyperview
+ </a>
+ <div class="nav-links">
+ <a href="/">Home</a>
+ <a href="/features.html">Features</a>
+ <a href="/about.html">About</a>
+ <a href="/contact.html">Contact</a>
+ </div>
+ <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')"><span></span><span></span><span></span></button>
+ </div>
 </nav>
 
 <main>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="container">
-      <div class="fade-up">
-        <p class="hero-eyebrow">About Hyperview</p>
-      </div>
-      <div class="fade-up">
-        <h1>Built by traders,<br>for traders.</h1>
-      </div>
-      <div class="fade-up">
-        <p class="subtitle">Professional trading tools shouldn't be limited to desktop. Hyperview brings institutional-grade charting and real-time on-chain intelligence to iOS.</p>
-      </div>
-    </div>
-  </div>
+ <!-- PAGE HEADER -->
+ <div class="page-header">
+ <div class="container">
+ <div class="fade-up">
+ <p class="hero-eyebrow">About Hyperview</p>
+ </div>
+ <div class="fade-up">
+ <h1>Built by traders,<br>for traders.</h1>
+ </div>
+ <div class="fade-up">
+ <p class="subtitle">Professional trading tools shouldn't be limited to desktop. Hyperview brings institutional-grade charting and real-time on-chain intelligence to iOS.</p>
+ </div>
+ </div>
+ </div>
 
-  <!-- OUR MISSION -->
-  <section class="content-section">
-    <div class="container">
-      <p class="section-label">Our Mission</p>
-      <h2>Why we built <span class="accent">Hyperview</span></h2>
-      <p>Hyperview was created to solve a simple problem: Hyperliquid traders on iOS had no professional-grade tools. Desktop platforms like TradingView offer incredible charting, but mobile traders were stuck with basic interfaces and fragmented workflows.</p>
-      <p>We set out to build the most complete trading terminal for Hyperliquid — combining advanced TradingView charts, on-chain intelligence, and seamless execution in a single native iOS app.</p>
-      <p>Our goal is to give every trader — from retail to institutional — the same powerful tools, right in their pocket.</p>
-    </div>
-  </section>
+ <!-- OUR MISSION -->
+ <section class="content-section">
+ <div class="container">
+ <p class="section-label">My Mission</p>
+ <h2>Why I built <span class="accent">Hyperview</span></h2>
+ <p>Hyperview was created to solve a simple problem: Hyperliquid traders on iOS had no professional-grade tools. Desktop platforms like TradingView offer incredible charting, but mobile traders were stuck with basic interfaces and fragmented workflows.</p>
+ <p>I set out to build the most complete trading terminal for Hyperliquid — combining advanced TradingView charts, on-chain intelligence, and seamless execution in a single native iOS app.</p>
+ <p>My goal is to give every trader — from retail to institutional — the same powerful tools, right in their pocket.</p>
+ </div>
+ </section>
 
-  <!-- WHAT WE BELIEVE -->
-  <section class="content-section" style="padding-top: 0;">
-    <div class="container">
-      <p class="section-label">What We Believe</p>
-      <h2>Our values</h2>
-      <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <h3>Transparency First</h3>
-          <p>All data comes directly from Hyperliquid's on-chain infrastructure. No intermediaries, no delayed feeds, no black boxes. What you see is what the chain sees.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <h3>Mobile-Native Performance</h3>
-          <p>We don't believe in web wrappers. Hyperview is built from the ground up with Swift and SwiftUI for 60fps animations, instant load times, and an experience that feels truly native.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Trader-Centric Design</h3>
-          <p>Every feature exists because traders asked for it. From the LARP detector to the liquidation heatmap — we build what the community needs, not what looks good in a pitch deck.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!-- WHAT WE BELIEVE -->
+ <section class="content-section" style="padding-top: 0;">
+ <div class="container">
+ <p class="section-label">What I Believe</p>
+ <h2>My values</h2>
+ <div class="values-grid">
+ <div class="value-card">
+ <div class="value-icon">
+ <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+ </div>
+ <h3>Transparency First</h3>
+ <p>All data comes directly from Hyperliquid's on-chain infrastructure. No intermediaries, no delayed feeds, no black boxes. What you see is what the chain sees.</p>
+ </div>
+ <div class="value-card">
+ <div class="value-icon">
+ <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ </div>
+ <h3>Mobile-Native Performance</h3>
+ <p>I don't believe in web wrappers. Hyperview is built from the ground up with Swift and SwiftUI for 60fps animations, instant load times, and an experience that feels truly native.</p>
+ </div>
+ <div class="value-card">
+ <div class="value-icon">
+ <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+ </div>
+ <h3>Trader-Centric Design</h3>
+ <p>Every feature exists because traders asked for it. From the LARP detector to the liquidation heatmap — I build what the community needs, not what looks good in a pitch deck.</p>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- BY THE NUMBERS -->
-  <section class="content-section" style="padding-top: 0;">
-    <div class="container">
-      <p class="section-label">By the Numbers</p>
-      <div class="stats-row" style="grid-template-columns: repeat(4, 1fr);">
-        <div class="stat-box">
-          <span class="stat-num">589+</span>
-          <span class="stat-label">Markets tracked</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">100+</span>
-          <span class="stat-label">Technical indicators</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">Real-time</span>
-          <span class="stat-label">WebSocket feeds</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">Native</span>
-          <span class="stat-label">iOS performance</span>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!-- BY THE NUMBERS -->
+ <section class="content-section" style="padding-top: 0;">
+ <div class="container">
+ <p class="section-label">By the Numbers</p>
+ <div class="stats-row" style="grid-template-columns: repeat(4, 1fr);">
+ <div class="stat-box">
+ <span class="stat-num">589+</span>
+ <span class="stat-label">Markets tracked</span>
+ </div>
+ <div class="stat-box">
+ <span class="stat-num">100+</span>
+ <span class="stat-label">Technical indicators</span>
+ </div>
+ <div class="stat-box">
+ <span class="stat-num">Real-time</span>
+ <span class="stat-label">WebSocket feeds</span>
+ </div>
+ <div class="stat-box">
+ <span class="stat-num">Native</span>
+ <span class="stat-label">iOS performance</span>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- THE TEAM -->
-  <section class="content-section">
-    <div class="container">
-      <p class="section-label">The Team</p>
-      <h2>Who's behind Hyperview</h2>
-      <div class="team-card">
-        <div class="team-name" style="display:flex;align-items:center;gap:12px;">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--text)" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <a href="https://x.com/alex_hunter20" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;">@alex_hunter20</a>
-        </div>
-        <div class="team-role">Founder & Developer</div>
-        <p class="team-bio">"Independent developer and active Hyperliquid trader. Hyperview is built with a deep understanding of what traders actually need — because I use it every day myself."</p>
-        <div class="team-meta">
-          <div class="team-meta-item">
-            <span class="team-meta-label">Location</span>
-            <span class="team-meta-val">Asia</span>
-          </div>
-          <div class="team-meta-item">
-            <span class="team-meta-label">Contact</span>
-            <span class="team-meta-val"><a href="mailto:contact@hyperviewtrade.com">contact@hyperviewtrade.com</a></span>
-          </div>
-          <div class="team-meta-item">
-            <span class="team-meta-label">Twitter</span>
-            <span class="team-meta-val"><a href="https://x.com/alex_hunter20" target="_blank" rel="noopener noreferrer">@alex_hunter20</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <!-- THE TEAM -->
+ <section class="content-section">
+ <div class="container">
+ <p class="section-label">The Team</p>
+ <h2>Who's behind Hyperview</h2>
+ <div class="team-card">
+ <div class="team-name" style="display:flex;align-items:center;gap:12px;">
+ <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--text)" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+ <a href="https://x.com/alex_hunter20" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;">@alex_hunter20</a>
+ </div>
+ <div class="team-role">Founder & Developer</div>
+ <p class="team-bio">"Independent developer and active Hyperliquid trader. Hyperview is built with a deep understanding of what traders actually need — because I use it every day myself."</p>
+ <div class="team-meta">
+ <div class="team-meta-item">
+ <span class="team-meta-label">Location</span>
+ <span class="team-meta-val">Asia</span>
+ </div>
+ <div class="team-meta-item">
+ <span class="team-meta-label">Contact</span>
+ <span class="team-meta-val"><a href="mailto:contact@hyperviewtrade.com">contact@hyperviewtrade.com</a></span>
+ </div>
+ <div class="team-meta-item">
+ <span class="team-meta-label">Twitter</span>
+ <span class="team-meta-val"><a href="https://x.com/alex_hunter20" target="_blank" rel="noopener noreferrer">@alex_hunter20</a></span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
 
-  <!-- TECHNOLOGY -->
-  <section class="tech-section">
-    <div class="container">
-      <p class="section-label">Technology</p>
-      <h2>Built with modern tools</h2>
-      <p>Hyperview is a fully native iOS application built with Swift and SwiftUI, powered by TradingView's charting library for professional-grade technical analysis. Real-time market data streams through WebSocket connections to Hyperliquid's API, backed by a Node.js server for data aggregation and processing.</p>
-      <div class="tech-row">
-        <span class="tech-pill">Swift / SwiftUI</span>
-        <span class="tech-pill">TradingView Charting Library</span>
-        <span class="tech-pill">Hyperliquid API</span>
-        <span class="tech-pill">WebSocket Datafeed</span>
-        <span class="tech-pill">Node.js Backend</span>
-        <span class="tech-pill">iOS 16+</span>
-      </div>
-    </div>
-  </section>
+ <!-- TECHNOLOGY -->
+ <section class="tech-section">
+ <div class="container">
+ <p class="section-label">Technology</p>
+ <h2>Built with modern tools</h2>
+ <p>Hyperview is a fully native iOS application built with Swift and SwiftUI, powered by TradingView's charting library for professional-grade technical analysis. Real-time market data streams through WebSocket connections to Hyperliquid's API, backed by a Node.js server for data aggregation and processing.</p>
+ <div class="tech-row">
+ <span class="tech-pill">Swift / SwiftUI</span>
+ <span class="tech-pill">TradingView Charting Library</span>
+ <span class="tech-pill">Hyperliquid API</span>
+ <span class="tech-pill">WebSocket Datafeed</span>
+ <span class="tech-pill">Node.js Backend</span>
+ <span class="tech-pill">iOS 16+</span>
+ </div>
+ </div>
+ </section>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="footer-full">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo">
-          <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Hyperview
-        </a>
-        <p>The most advanced Hyperliquid trading terminal on iOS. Institutional-grade charts, on-chain intelligence, and seamless execution.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="/">Home</a>
-        <a href="/features.html">Features</a>
-        <a href="https://github.com/hyperviewtrade">GitHub</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="mailto:contact@hyperviewtrade.com">Email Us</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="/disclaimer.html">Disclaimer</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Hyperview. All rights reserved.</p>
-      <div class="footer-legal">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
+ <div class="container">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <a href="/" class="logo">
+ <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 12 L6 7 L10 9 L14 3" stroke="#080a0c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ Hyperview
+ </a>
+ <p>The most advanced Hyperliquid trading terminal on iOS. Institutional-grade charts, on-chain intelligence, and seamless execution.</p>
+ </div>
+ <div class="footer-col">
+ <h4>Product</h4>
+ <a href="/">Home</a>
+ <a href="/features.html">Features</a>
+ <a href="https://github.com/hyperviewtrade">GitHub</a>
+ </div>
+ <div class="footer-col">
+ <h4>Company</h4>
+ <a href="/about.html">About</a>
+ <a href="/contact.html">Contact</a>
+ <a href="mailto:contact@hyperviewtrade.com">Email Me</a>
+ </div>
+ <div class="footer-col">
+ <h4>Legal</h4>
+ <a href="/privacy.html">Privacy Policy</a>
+ <a href="/terms.html">Terms of Service</a>
+ <a href="/disclaimer.html">Disclaimer</a>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p>&copy; 2026 Hyperview. All rights reserved.</p>
+ <div class="footer-legal">
+ <a href="/privacy.html">Privacy</a>
+ <a href="/terms.html">Terms</a>
+ <a href="/contact.html">Contact</a>
+ </div>
+ </div>
+ </div>
 </footer>
 
 </body>
