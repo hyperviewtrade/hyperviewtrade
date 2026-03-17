@@ -979,6 +979,10 @@ footer {
   letter-spacing: -0.02em;
 }
 
+.section-number {
+  margin-right: 0.45em;
+}
+
 .legal-content h3 {
   font-size: 17px;
   font-weight: 600;
